@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace KittensEatingDesserts.Models
 {
@@ -27,6 +28,16 @@ namespace KittensEatingDesserts.Models
             }
         }
 
+        [NotMapped]
+        public double? AverageRating
+        {
+            get
+            {
+                return this.Ratings?.Average(rating => (double)rating.AssignedRating);
+            }
+        }
+
+        [JsonIgnore]
         public ICollection<Rating> Ratings { get; set; }
 
     }

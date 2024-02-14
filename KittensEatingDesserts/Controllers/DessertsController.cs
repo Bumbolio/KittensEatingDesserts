@@ -29,7 +29,7 @@ namespace KittensEatingDesserts.Controllers
           {
               return NotFound();
           }
-            return await _context.Desserts.ToListAsync();
+            return await _context.Desserts.Include(dessert => dessert.Ratings).ToListAsync();
         }
 
         // GET: api/Desserts/5
